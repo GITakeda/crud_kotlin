@@ -2,7 +2,8 @@ package arthur.takeda.com.crudescola.model
 
 import javax.persistence.*
 
-class Mentoria (
+@Entity
+data class Mentoria (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null,
@@ -15,5 +16,6 @@ class Mentoria (
     @JoinColumn(name = "mentor_id")
     var mentor: Mentor? = null,
 
+    @Column(columnDefinition = "BIT NOT NULL")
     var active: Boolean = true
 )
