@@ -6,6 +6,7 @@ import arthur.takeda.com.crudescola.repository.AlunoRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import arthur.takeda.com.crudescola.dto.mapper.AlunoMapper
+import arthur.takeda.com.crudescola.exception.NotFoundException
 import org.mapstruct.factory.Mappers
 import org.springframework.transaction.annotation.Transactional
 
@@ -22,7 +23,7 @@ class AlunoService(
     }
 
     fun findById(id: Long): AlunoDTO{
-        var aluno: Aluno = alunoRepository.findByIdAndActive(id, true) ?: throw Exception("Aluno não encontrado");
+        var aluno: Aluno = alunoRepository.findByIdAndActive(id, true) ?: throw NotFoundException("Aluno não encontrado");
 
         return mapper.toAlunoDTO(aluno);
     }
@@ -39,7 +40,7 @@ class AlunoService(
         var aluno:Aluno = mapper.toAluno(alunoDTO);
 
         if(!alunoRepository.existsByIdAndActive(id, true)){
-            throw Exception("Aluno não encontrado");
+            throw NotFoundException("Aluno não encontrado");
         }
 
         aluno.id = id;
@@ -51,7 +52,7 @@ class AlunoService(
 
     @Transactional
     fun delete(id: Long){
-        var aluno: Aluno = alunoRepository.findByIdAndActive(id, true)?: throw Exception("Aluno não encontrado");
+        var aluno: Aluno = alunoRepository.findByIdAndActive(id, true)?: throw NotFoundException("Aluno não encontrado");
 
         aluno.active = false;
     }

@@ -3,6 +3,7 @@ package arthur.takeda.com.crudescola.service
 import arthur.takeda.com.crudescola.dto.MentoriaDTO
 import arthur.takeda.com.crudescola.dto.mapper.AlunoMapper
 import arthur.takeda.com.crudescola.dto.mapper.MentoriaMapper
+import arthur.takeda.com.crudescola.exception.NotFoundException
 import arthur.takeda.com.crudescola.model.Mentoria
 import arthur.takeda.com.crudescola.repository.MentoriaRepository
 import org.mapstruct.factory.Mappers
@@ -23,18 +24,22 @@ data class MentoriaService(
     }
 
     fun findById(id:Long): MentoriaDTO{
-        return mapper.toMentoriaDTO(mentoriaRepository.findByIdAndActive(id, true)?: throw Exception("Mentoria não encontrada"));
+        return mapper.toMentoriaDTO(mentoriaRepository.findByIdAndActive(id, true)?: throw NotFoundException("Mentoria não encontrada"));
     }
 
     fun save(mentoriaDTO: MentoriaDTO): Long{
-        return mentoriaRepository.save(mapper.toMentoria(mentoriaDTO)?: throw Exception("Aluno ou mentor invalidos")).id?:0;
+        var mentoria: Mentoria = mapper.toMentoria(mentoriaDTO)
+
+        mentoriaRepository.save(mentoria)
+
+        return mentoria.id?:0;
     }
 
     fun save(mentoriaDTO: MentoriaDTO, id: Long): Long{
         var mentoria: Mentoria = mapper.toMentoria(mentoriaDTO)
 
         if(!mentoriaRepository.existsByIdAndActive(id, true)){
-            throw Exception("Mentoria não encontrada")
+            throw NotFoundException("Mentoria não encontrada")
         }
 
         mentoria.id = id
@@ -46,7 +51,7 @@ data class MentoriaService(
 
     @Transactional
     fun delete(id: Long){
-        var mentoria: Mentoria = mentoriaRepository.findByIdAndActive(id, true)?:throw Exception("Mentoria não encontrada")
+        var mentoria: Mentoria = mentoriaRepository.findByIdAndActive(id, true)?:throw NotFoundException("Mentoria não encontrada")
 
         mentoria.active = false
     }
