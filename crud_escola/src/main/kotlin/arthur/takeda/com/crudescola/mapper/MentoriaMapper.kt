@@ -1,17 +1,14 @@
-package arthur.takeda.com.crudescola.dto.mapper
+package arthur.takeda.com.crudescola.mapper
 
-import arthur.takeda.com.crudescola.dto.AlunoDTO
 import arthur.takeda.com.crudescola.dto.MentoriaDTO
 import arthur.takeda.com.crudescola.model.Aluno
 import arthur.takeda.com.crudescola.model.Mentor
 import arthur.takeda.com.crudescola.model.Mentoria
-import arthur.takeda.com.crudescola.repository.AlunoRepository
 import arthur.takeda.com.crudescola.service.AlunoService
 import arthur.takeda.com.crudescola.service.MentorService
 import org.mapstruct.*
 import org.mapstruct.factory.Mappers
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.web.bind.annotation.RequestMapping
 
 
 @Mapper(componentModel = "spring")

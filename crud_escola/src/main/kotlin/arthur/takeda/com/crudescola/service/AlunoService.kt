@@ -3,19 +3,17 @@ package arthur.takeda.com.crudescola.service
 import arthur.takeda.com.crudescola.dto.AlunoDTO
 import arthur.takeda.com.crudescola.model.Aluno
 import arthur.takeda.com.crudescola.repository.AlunoRepository
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import arthur.takeda.com.crudescola.dto.mapper.AlunoMapper
+import arthur.takeda.com.crudescola.mapper.AlunoMapper
 import arthur.takeda.com.crudescola.exception.NotFoundException
 import org.mapstruct.factory.Mappers
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.transaction.annotation.Transactional
 
 @Service
 class AlunoService(
-    @Autowired
-    val alunoRepository: AlunoRepository,
-
-    val mapper: AlunoMapper = Mappers.getMapper(AlunoMapper::class.java)
+    private val alunoRepository: AlunoRepository,
+    private val mapper: AlunoMapper
 ) {
 
     fun findAll(): List<AlunoDTO> {

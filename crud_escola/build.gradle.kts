@@ -25,7 +25,7 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.mapstruct:mapstruct:1.4.2.Final")
-	runtimeOnly("com.oracle.database.jdbc:ojdbc8")
+	implementation("junit:junit:4.12")
 	runtimeOnly("mysql:mysql-connector-java")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 

@@ -2,7 +2,7 @@ package arthur.takeda.com.crudescola.service
 
 import arthur.takeda.com.crudescola.model.Mentor
 import arthur.takeda.com.crudescola.dto.MentorDTO
-import arthur.takeda.com.crudescola.dto.mapper.MentorMapper
+import arthur.takeda.com.crudescola.mapper.MentorMapper
 import arthur.takeda.com.crudescola.exception.NotFoundException
 import arthur.takeda.com.crudescola.repository.MentorRepository
 import org.mapstruct.factory.Mappers
@@ -12,10 +12,9 @@ import org.springframework.transaction.annotation.Transactional
 
 @Service
 class MentorService(
-    @Autowired
-    val mentorRepository: MentorRepository,
+    private val mentorRepository: MentorRepository,
 
-    val mapper: MentorMapper = Mappers.getMapper(MentorMapper::class.java)
+    private val mapper: MentorMapper
 ) {
 
     fun findAll(): List<MentorDTO> {
