@@ -1,9 +1,13 @@
 package arthur.takeda.com.crudescola.dto
 
-import arthur.takeda.com.crudescola.model.Aluno
+import javax.validation.constraints.NotBlank
+import javax.validation.constraints.NotEmpty
+import javax.validation.constraints.NotNull
 
 data class AlunoDTO(
     var id: Long? = null,
-    var nome: String? = null,
-    var idade: Int? = null
+    @field:NotNull @field:NotBlank @field:NotEmpty
+    var nome: String,
+    @field:NotNull
+    val idade: Int
 )

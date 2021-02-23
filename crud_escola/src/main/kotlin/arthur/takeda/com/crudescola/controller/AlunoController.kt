@@ -5,8 +5,10 @@ import arthur.takeda.com.crudescola.model.Aluno
 import arthur.takeda.com.crudescola.service.AlunoService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
+import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 import java.net.URI
+import javax.validation.Valid
 
 @RestController
 @RequestMapping("/aluno")
@@ -26,6 +28,7 @@ class AlunoController(
     }
 
     @PostMapping("/post")
+    @Validated
     fun save(@RequestBody aluno: AlunoDTO): ResponseEntity<Any> {
         return ResponseEntity.created(URI.create("/aluno/${alunoService.save(aluno)}")).build();
     }

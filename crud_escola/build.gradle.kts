@@ -1,5 +1,4 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
 
 plugins {
 	id("org.springframework.boot") version "2.4.2"
@@ -26,6 +25,7 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.mapstruct:mapstruct:1.4.2.Final")
 	implementation("junit:junit:4.12")
+	implementation("javax.validation:validation-api")
 	runtimeOnly("mysql:mysql-connector-java")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 
